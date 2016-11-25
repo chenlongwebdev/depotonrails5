@@ -8,7 +8,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <!--为html的视图层生成body 框架 并定义class 以使用与scss样式表-->
+  <body class="<%=controller.controller_name%>">
     <%= yield %>
   </body>
 </html>
