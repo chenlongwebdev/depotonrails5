@@ -1,13 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+#在test数据库中的products数据中插入下面3条数据，在插入前会将表清空
 one:
   title: MyString
   description: MyText
   image_url: MyString
   price: 9.99
 
+
 two:
   title: MyString
   description: MyText
   image_url: MyString
+  price: 9.99
+
+java:
+  title: thinkinjava
+  description: great book of java
+  image_url: java.png
   price: 9.99

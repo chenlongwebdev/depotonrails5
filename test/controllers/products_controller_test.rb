@@ -2,8 +2,11 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    #将products.yml中的one数据给@product
     @product = products(:one)
+
     #自定义用于测试的数据@update
+    #@update事实上是一个hash值
     @update={
         title:'卫龙',
         description:'香辣可口',
