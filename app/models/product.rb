@@ -7,4 +7,5 @@ class Product < ApplicationRecord
       with:/\.(jpg|png|gif)\Z/i,
       message:"the imageurl must end with gif or jpg or png"
   }
+  validates :title,length: { maximum: 10 ,message:"error!!"}
 end
