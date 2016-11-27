@@ -1,0 +1,17 @@
+<p id="notice"><%=notice%></p>
+<h1>商品目录</h1>
+<% @products.each do |product| %>
+    <div class="entry">
+      <%= image_tag(product.image_url) %>
+      <h1><% product.title %></h1>
+      <%= sanitize(product.description) %>
+      <div class="price_line">
+        <span class="price"><%= product.price %></span>
+      </div>
+    </div>
+
+<% end %>
+<p>url是绝对路径，path是相对路径</p>
+<%= link_to"url" ,store_index_url %>
+<%= link_to"path" ,store_index_path %>
+
