@@ -59,6 +59,8 @@ class StoreControllerTest < ActionDispatch::IntegrationTest
       puts par
     end
 
+
+
     pars = css_select("[class|=entry]")
     pars.each do |par|
       # Do something fun with paragraphs here...
