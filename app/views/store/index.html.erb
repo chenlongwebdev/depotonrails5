@@ -1,17 +1,23 @@
-<p id="notice"><%=notice%></p>
+<p id="notice"><%= notice %></p>
 <h1>商品目录</h1>
-<% @products.each do |product| %>
-    <div class="entry">
-      <%= image_tag(product.image_url) %>
-      <h1><% product.title %></h1>
-      <%= sanitize(product.description) %>
-      <div class="price_line">
-        <span class="price"><%= product.price %></span>
-      </div>
-    </div>
+<!--第一次从db读取数据时会把数据写入到fragment 中，当再有request连接到该页面时 会从缓存中读取数据 -->
+<% cache @products do %> <!--用来判断@products list有没有改变-->
+    <% @products.each do |product| %>
+        <% cache product do %><!--用来判断product 有没有改变-->
+            <div class="entry">
+              <%= image_tag(product.image_url) %>
+              <h3><%= product.title %></h3>
+              <%= sanitize(product.description) %>
+              <div class="price_line">
+                <span class="price"><%= number_to_currency product.price ,unit:"￥"%></span>
+              </div>
+            </div>
 
+        <% end %>
+    <% end %>
 <% end %>
-<p>url是绝对路径，path是相对路径</p>
-<%= link_to"url" ,store_index_url %>
-<%= link_to"path" ,store_index_path %>
+<b>url是绝对路径，path是相对路径</b>
+<%= link_to "url", store_index_url %>
+<%= link_to "path", store_index_path %>
+
 

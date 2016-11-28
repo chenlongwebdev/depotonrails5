@@ -3,6 +3,7 @@ require 'test_helper'
 #这里的testcase 是单元测试
 
 #重要，如果在fixtures/products.yml 中定义完数据，默认将在每次调用rails test时将testdb中的数据擦除并重置为所有的定义数据
+#因为test_helper.rb 被require进来了，TestCase的实例被全部调用
 #也可以自己指定加载定义数据
 #testdb中的数据可以被使用，表名（rowname）  p98
 class ProductTest < ActiveSupport::TestCase
@@ -40,7 +41,7 @@ class ProductTest < ActiveSupport::TestCase
     bad=%w(A.pgd b.scd d.bmp e.efd)
     good.each do |image_url|
       product=new_product(image_url)
-      assert product.valid?
+      assert product.valid? ,"#{product.errors[:title]}"
 
     end
 
@@ -57,7 +58,8 @@ class ProductTest < ActiveSupport::TestCase
     # product=Product.new(title:"a",image_url:"java.jpg",description:"好书",price:58)
     #如果product对象没有通过validition的话，就会将错误填充给product.errors对象
     assert product.invalid?
-    assert_equal [I18n.translate('errors.messages.taken')], product.errors[:title]
+    #assert_equal [I18n.translate('errors.messages.taken')], product.errors[:title]
+    assert_equal ["has already been taken"],product.errors[:title]
     # puts          product.errors[:title]
 
   end
